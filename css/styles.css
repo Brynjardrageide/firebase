@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #333;
+}
+
+#task-management {
+    background-color: #f0f9f7;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#task-management h2 {
+    color: #228b22;
+    margin-bottom: 20px;
+}
+
+#task-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#task-form label,
+#task-form select,
+#task-form input {
+    margin-bottom: 10px;
+}
+
+#task-form select,
+#task-form input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+}
+
+#task-form button {
+    background-color: #228b22;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#task-form button:hover {
+    background-color: #196619;
+}
+
+#completed-task {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#completed-task th,
+#completed-task td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#completed-task th {
+    background-color: #228b22;
+    color: white;
+}
+
+/* Navigation Bar */
+#navbar {
+    background-color: #228B22;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-family: Arial, sans-serif;
+  }
+  
+  .nav-brand {
+    color: #ffffff;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-left: 1.5rem;
+  }
+  
+  .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+/* Add these rules to your styles.css file */
+
+/* Scoreboard section */
+#scoreboard {
+    margin: 20px auto;
+    max-width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+    padding: 20px;
+  }
+  
+  #scoreboard h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Scoreboard table */
+  #scoreboard table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #scoreboard th,
+  #scoreboard td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #scoreboard th {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  #scoreboard tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  #scoreboard tbody tr:hover {
+    background-color: #ddd;
+  }
+    

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Management</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <!-- Add the Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav id="navbar">
+        <a href="/" class="nav-brand">drgeide - ryding</a>
+        <ul class="nav-links">
+          <li><a href="/html/taskManagement.html">Task Management</a></li>
+          <li><a href="/html/taskCreation.html">New Tasks</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Task Management Section -->
+    <section>
+      <h2>Task Management</h2>
+      <form id="task-form">
+        <label for="user-select">User:</label>
+        <select id="user-select" required>
+          <option value="">-- Select a user --</option>
+        </select>
+
+        <label for="task-select">Task:</label>
+        <select id="task-select" required>
+          <option value="">-- Select a task --</option>
+        </select>
+
+        <label for="task-date">Date:</label>
+        <input type="date" id="task-date" required />
+
+        <button type="submit">Add Task</button>
+      </form>
+    </section>
+
+    <!-- Completed tasks table -->
+    <section>
+      <h2>Completed Tasks</h2>
+      <table id="completed-task">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Task</th>
+            <th>Date</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/taskManagement.js"></script>
+  </body>
+</html>
