@@ -150,4 +150,32 @@ body {
   #scoreboard tbody tr:hover {
     background-color: #ddd;
   }
-    
+    /* styles.css */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+tr:hover {
+  background-color: #e8e8e8;
+}
+
+th {
+  font-weight: bold;
+}

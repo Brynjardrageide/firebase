@@ -25,6 +25,7 @@ taskForm.addEventListener("submit", async (event) => {
   taskSelect.value = "";
   taskDate.value = "";
   displayCompletedTask();
+  displayUserPoints();
 });
 
 // Display completed tasks in the table
@@ -65,7 +66,63 @@ const displayCompletedTask = async () => {
       completedTask.appendChild(row);
     }
   }
+  displayUserPoints();
 };
+
+const calculateUserPoints = async () => {
+  const usersSnapshot = await db.collection("users").get();
+  const pointsPerUser = {};
+
+  for (const userDoc of usersSnapshot.docs) {
+    const userId = userDoc.id;
+    pointsPerUser[userId] = 0;
+
+    const doneSnapshot = await db.collection("done")
+      .where("user_id", "==", userId)
+      .get();
+
+    for (const doneDoc of doneSnapshot.docs) {
+      const taskId = doneDoc.data().task_id;
+      const taskDoc = await db.collection("task").doc(taskId).get();
+
+      if (taskDoc.exists) {
+        const taskPoints = parseInt(taskDoc.data().points, 10); // Parse points as integers
+        pointsPerUser[userId] += taskPoints;
+      }
+    }
+  }
+
+  return pointsPerUser;
+};
+
+
+const displayUserPoints = async () => {
+  const pointsPerUserTable = document
+    .getElementById("points-per-user")
+    .querySelector("tbody");
+  pointsPerUserTable.innerHTML = "";
+
+  const pointsPerUser = await calculateUserPoints();
+  const usersSnapshot = await db.collection("users").get();
+
+  usersSnapshot.forEach(userDoc => {
+    const user = userDoc.data();
+    const userId = userDoc.id;
+
+    const row = document.createElement("tr");
+
+    const userNameCell = document.createElement("td");
+    userNameCell.textContent = user.name;
+    row.appendChild(userNameCell);
+
+    const userPointsCell = document.createElement("td");
+    userPointsCell.textContent = pointsPerUser[userId];
+    row.appendChild(userPointsCell);
+
+    pointsPerUserTable.appendChild(row);
+  });
+};
+
 
 // Initially display completed task
 displayCompletedTask();
