@@ -1,81 +1,63 @@
-const getParam = (param) => {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-};
+// js/userDetails.js
 
-const displayUserDetails = async () => {
-    const userId = getParam("userId");
-  
-    if (!userId) {
-      return;
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get("userId");
+
+const userNameElement = document.getElementById("user-name");
+const userPointsElement = document.getElementById("user-points");
+const taskHistoryList = document.getElementById("task-history");
+
+let totalPoints = 0; // Keep track of the total points for the user
+
+if (!userId) {
+  window.location.href = "/";
+}
+
+// Fetch user details
+firebase
+  .firestore()
+  .collection("users")
+  .doc(userId)
+  .get()
+  .then((doc) => {
+    if (doc.exists) {
+      userNameElement.textContent = doc.data().name;
+    } else {
+      window.location.href = "/";
     }
-  
-    const userDoc = await db.collection("users").doc(userId).get();
-    const user = userDoc.data();
-  
-    document.getElementById("user-name").innerText = user.name;
-  
-    const pointsPerUser = await calculateUserPoints();
-    document.getElementById("user-points").innerText = pointsPerUser[userId];
-  
-    const doneSnapshot = await db.collection("done")
-      .where("user_id", "==", userId)
-      .get();
-  
-    const taskCount = {};
-    const taskTimestamps = {};
-  
-    doneSnapshot.forEach(async (doneDoc) => {
-      const taskId = doneDoc.data().task_id;
-      const timestampData = doneDoc.data().timestamp;
-  
-      // Check if timestamp exists before converting it
-      const timestamp = timestampData ? timestampData.toDate().toLocaleString() : 'N/A';
-  
-      const taskDoc = await db.collection("task").doc(taskId).get();
-  
-      if (taskDoc.exists) {
-        const task = taskDoc.data();
-  
-        if (!taskCount[taskId]) {
-          taskCount[taskId] = 0;
-        }
-  
-        taskCount[taskId]++;
-  
-        if (!taskTimestamps[taskId]) {
-          taskTimestamps[taskId] = [];
-        }
-  
-        taskTimestamps[taskId].push(timestamp);
-      }
+  });
+
+// Fetch user's task history
+firebase
+  .firestore()
+  .collection("done")
+  .where("user_id", "==", userId)
+  .get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const doneData = doc.data();
+      const taskId = doneData.task_id;
+      const date = doneData.date.toDate();
+
+      firebase
+        .firestore()
+        .collection("task")
+        .doc(taskId)
+        .get()
+        .then((taskDoc) => {
+          if (taskDoc.exists) {
+            const taskData = taskDoc.data();
+            const taskName = taskData.name;
+            const taskPoints = parseInt(taskData.points, 10); // Parse points as integers
+
+            totalPoints += taskPoints; // Add task points to the total points
+
+            const listItem = document.createElement("li");
+            listItem.textContent = `${taskName} - ${date.toLocaleDateString()} - Points: ${taskPoints}`;
+            taskHistoryList.appendChild(listItem);
+
+            userPointsElement.textContent = `Total Points: ${totalPoints}`; // Update the total points displayed
+          }
+        });
     });
-  
-    displayTaskHistory(taskCount, taskTimestamps);
-  };
-  
-  const displayTaskHistory = async (taskCount, taskTimestamps) => {
-    const taskHistoryList = document.getElementById("task-history");
-  
-    for (const taskId in taskCount) {
-      const taskDoc = await db.collection("task").doc(taskId).get();
-      const task = taskDoc.data();
-  
-      const taskItem = document.createElement("li");
-      taskItem.textContent = `${task.name} - Completed ${taskCount[taskId]} times`;
-  
-      const timestampList = document.createElement("ul");
-  
-      taskTimestamps[taskId].forEach((timestamp) => {
-        const timestampItem = document.createElement("li");
-        timestampItem.textContent = `Completed on: ${timestamp}`;
-        timestampList.appendChild(timestampItem);
-      });
-  
-      taskItem.appendChild(timestampList);
-      taskHistoryList.appendChild(taskItem);
-    }
-  };
-    
-
-displayUserDetails();
+  });

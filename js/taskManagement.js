@@ -142,3 +142,4 @@ const displayUserPoints = async () => {
 
 // Initially display completed task
 displayCompletedTask();
+displayUserPoints();

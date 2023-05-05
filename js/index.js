@@ -28,10 +28,6 @@ const displayLeaderboard = async () => {
 };
 
 
-
-
-
-
 async function displayPieChart() {
   const pointsPerUser = await calculateUserPoints();
   const usersSnapshot = await db.collection("users").get();
