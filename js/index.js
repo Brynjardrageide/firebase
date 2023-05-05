@@ -3,7 +3,7 @@ const displayLeaderboard = async () => {
   const leaderboardTable = document.getElementById("leaderboard-table").querySelector("tbody");
   leaderboardTable.innerHTML = "";
 
-  const pointsPerUser = await calculateUserPoints();
+  const pointsPerUser = await samleUserPoints();
 
   for (const userId in pointsPerUser) {
     const userDoc = await db.collection("users").doc(userId).get();
@@ -29,7 +29,7 @@ const displayLeaderboard = async () => {
 
 
 async function displayPieChart() {
-  const pointsPerUser = await calculateUserPoints();
+  const pointsPerUser = await samleUserPoints();
   const usersSnapshot = await db.collection("users").get();
 
   const pieChartLabels = [];

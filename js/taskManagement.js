@@ -52,12 +52,10 @@ const displayCompletedTask = async () => {
     }
   }
 
-  // Sort completed tasks by date
-// Sort completed tasks by date, newest first
-completedTasks.sort((a, b) => {
-  return b.doneData.date.toDate() - a.doneData.date.toDate();
-});
-
+  // Sort completed tasks by date, newest first
+  completedTasks.sort((a, b) => {
+    return b.doneData.date.toDate() - a.doneData.date.toDate();
+  });
 
   // Display the sorted completed tasks
   for (const completedTask of completedTasks) {
@@ -83,8 +81,6 @@ completedTasks.sort((a, b) => {
   }
   displayUserPoints();
 };
-
-
 const calculateUserPoints = async () => {
   const usersSnapshot = await db.collection("users").get();
   const pointsPerUser = {};
@@ -110,7 +106,6 @@ const calculateUserPoints = async () => {
 
   return pointsPerUser;
 };
-
 
 const displayUserPoints = async () => {
   const pointsPerUserTable = document
@@ -138,7 +133,6 @@ const displayUserPoints = async () => {
     pointsPerUserTable.appendChild(row);
   });
 };
-
 
 // Initially display completed task
 displayCompletedTask();

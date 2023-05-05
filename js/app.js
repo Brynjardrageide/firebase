@@ -32,7 +32,7 @@ const firebaseConfig = {
       taskSelect.appendChild(taskOption);
     });
   };
-  const calculateUserPoints = async () => {
+  const samleUserPoints = async () => {
     const usersSnapshot = await db.collection("users").get();
     const pointsPerUser = {};
   
