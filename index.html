@@ -10,6 +10,7 @@
     <!-- Add the Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <!-- Your HTML content here -->
@@ -23,10 +24,10 @@
       </nav>
     </header>
 
+    <!-- Add this inside the body tag of index.html -->
     <main>
-      <!-- Add this inside the body tag of index.html -->
-      <main>
-        <table id="leaderboard">
+      <div id="leaderboard-container">
+        <table id="leaderboard-table">
           <thead>
             <tr>
               <th>User</th>
@@ -35,7 +36,11 @@
           </thead>
           <tbody></tbody>
         </table>
-      </main>
+      </div>
+
+      <div id="pie-chart-container">
+        <canvas id="pie-chart"></canvas>
+      </div>
     </main>
 
     <!-- Add these at the end of the body tag in index.html -->

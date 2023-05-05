@@ -179,3 +179,83 @@ tr:hover {
 th {
   font-weight: bold;
 }
+/* Task creation section */
+#task-creation {
+  background-color: #f0f9f7;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+#task-creation h2 {
+  color: #228b22;
+  margin-bottom: 20px;
+}
+
+/* Task creation form */
+#create-task-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+#create-task-form label,
+#create-task-form input,
+#create-task-form textarea {
+  margin-bottom: 10px;
+}
+
+#create-task-form input,
+#create-task-form textarea {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 14px;
+}
+
+#create-task-form textarea {
+  resize: vertical;
+}
+
+#create-task-form button {
+  background-color: #228b22;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  grid-column: span 2; /* Make the button span across both columns */
+}
+
+#create-task-form button:hover {
+  background-color: #196619;
+}
+/* Main content section */
+main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Pie chart container */
+#pie-chart-container {
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Leaderboard section */
+#leaderboard {
+  margin: 20px auto;
+  max-width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f8f8f8;
+  padding: 20px;
+}
