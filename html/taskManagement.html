@@ -22,56 +22,70 @@
       </nav>
     </header>
 
+  <!-- Add this markup after the nav bar -->
+    <div class="center" id="loading-animation">
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
     <!-- Task Management Section -->
-    <section>
-      <h2>Task Management</h2>
-      <form id="task-form">
-        <label for="user-select">User:</label>
-        <select id="user-select" required>
-          <option value="">-- Select a user --</option>
-        </select>
+    <div id="content">
+      <section>
+        <h2>Task Management</h2>
+        <form id="task-form">
+          <label for="user-select">User:</label>
+          <select id="user-select" required>
+            <option value="">-- Select a user --</option>
+          </select>
 
-        <label for="task-select">Task:</label>
-        <select id="task-select" required>
-          <option value="">-- Select a task --</option>
-        </select>
+          <label for="task-select">Task:</label>
+          <select id="task-select" required>
+            <option value="">-- Select a task --</option>
+          </select>
 
-        <label for="task-date">Date:</label>
-        <input type="date" id="task-date" required />
+          <label for="task-date">Date:</label>
+          <input type="date" id="task-date" required />
 
-        <button type="submit">Add Task</button>
-      </form>
-    </section>
-    <!-- Points per user section -->
-    <section>
-      <h2>Points per User</h2>
-      <table id="points-per-user">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Points</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
+          <button type="submit">Add Task</button>
+        </form>
+      </section>
+      <!-- Points per user section -->
+      <section>
+        <h2>Points per User</h2>
+        <table id="points-per-user">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
 
-    <!-- Completed tasks table -->
-    <section>
-      <h2>Completed Tasks</h2>
-      <table id="completed-task">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Task</th>
-            <th>Date</th>
-            <th>Points</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
-
+      <!-- Completed tasks table -->
+      <section>
+        <h2>Completed Tasks</h2>
+        <table id="completed-task">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Task</th>
+              <th>Date</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+      </div>
     <script src="/js/app.js"></script>
     <script src="/js/taskManagement.js"></script>
   </body>

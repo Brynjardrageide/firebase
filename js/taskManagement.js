@@ -7,6 +7,7 @@ const completedTaskTable = document.getElementById("completed-task").querySelect
 
 populateDropdowns();
 
+
 // Handle task form submission
 taskForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -30,6 +31,7 @@ taskForm.addEventListener("submit", async (event) => {
 
 // Display completed tasks in the table
 const displayCompletedTask = async () => {
+  showLoadingAnimation();
   completedTaskTable.innerHTML = "";
 
   const doneSnapshot = await db.collection("done").get();
@@ -79,7 +81,8 @@ const displayCompletedTask = async () => {
 
     completedTaskTable.appendChild(row);
   }
-  displayUserPoints();
+  await displayUserPoints();
+  hideLoadingAnimation();
 };
 const calculateUserPoints = async () => {
   const usersSnapshot = await db.collection("users").get();
@@ -108,6 +111,7 @@ const calculateUserPoints = async () => {
 };
 
 const displayUserPoints = async () => {
+  showLoadingAnimation();
   const pointsPerUserTable = document
     .getElementById("points-per-user")
     .querySelector("tbody");
@@ -132,8 +136,18 @@ const displayUserPoints = async () => {
 
     pointsPerUserTable.appendChild(row);
   });
+  hideLoadingAnimation();
+
 };
 
 // Initially display completed task
 displayCompletedTask();
-displayUserPoints();
+function showLoadingAnimation() {
+  document.getElementById("loading-animation").style.display = "flex";
+  document.getElementById("content").style.display = "none";
+}
+
+function hideLoadingAnimation() {
+  document.getElementById("loading-animation").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}

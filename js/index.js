@@ -74,6 +74,27 @@ async function displayPieChart() {
     },
   });
 }
-displayLeaderboard().then(() => {
-  displayPieChart();
+
+// Add this function to show the loading animation
+function showLoadingAnimation() {
+  document.querySelector(".center").style.display = "flex";
+  document.getElementById("content").style.display = "none";
+}
+
+// Add this function to hide the loading animation and show the content
+function hideLoadingAnimation() {
+  document.querySelector(".center").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
+
+// Show the loading animation initially
+showLoadingAnimation();
+
+// Wait for both displayLeaderboard and displayPieChart to complete
+Promise.all([
+  displayLeaderboard(),
+  displayPieChart(),
+]).then(() => {
+  // Hide the loading animation and show the content when both functions are done
+  hideLoadingAnimation();
 });
